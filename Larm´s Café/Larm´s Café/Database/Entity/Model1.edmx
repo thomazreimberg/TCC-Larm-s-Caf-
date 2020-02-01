@@ -1,0 +1,1628 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="larmscafeModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tb_balanco_patrimonial">
+          <Key>
+            <PropertyRef Name="id_balanco_patrimonial" />
+          </Key>
+          <Property Name="id_balanco_patrimonial" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nm_referencia" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="vl_valor" Type="decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="dt_data" Type="date" Nullable="false" />
+          <Property Name="ds_categoria" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_cargo">
+          <Key>
+            <PropertyRef Name="id_cargo" />
+          </Key>
+          <Property Name="id_cargo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ds_cargo" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ds_codigo_cargo" Type="varchar" MaxLength="4" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_cliente">
+          <Key>
+            <PropertyRef Name="id_cliente" />
+          </Key>
+          <Property Name="id_cliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nm_cliente" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="ds_telefone" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="ds_endereco" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="dt_primeira_compra" Type="date" Nullable="false" />
+          <Property Name="bt_ativo" Type="bool" Nullable="false" />
+          <Property Name="bt_fidelizado" Type="bool" Nullable="false" />
+          <Property Name="ds_email" Type="varchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_custo">
+          <Key>
+            <PropertyRef Name="id_custo" />
+          </Key>
+          <Property Name="id_custo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="qt_quantidade_compra" Type="int" Nullable="false" />
+          <Property Name="vl_total" Type="decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="dt_compra" Type="date" Nullable="false" />
+          <Property Name="id_fornecedores" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_custo_item">
+          <Key>
+            <PropertyRef Name="id_custo_ item" />
+          </Key>
+          <Property Name="id_custo_ item" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="vl_preco_unitario" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="id_materia_prima" Type="int" Nullable="false" />
+          <Property Name="id_custo" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_despesa">
+          <Key>
+            <PropertyRef Name="id_fluxo_caixa" />
+          </Key>
+          <Property Name="id_fluxo_caixa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nm_referencia" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="ds_previsto" Type="decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="ds_realizado" Type="decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="dt_entrada" Type="date" Nullable="false" />
+          <Property Name="dt_saida" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_estoque">
+          <Key>
+            <PropertyRef Name="id_estoque" />
+          </Key>
+          <Property Name="id_estoque" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="qt_estoque" Type="int" Nullable="false" />
+          <Property Name="ds_situacao_produto" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ds_especificacao" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="bt_abastecer" Type="bool" Nullable="false" />
+          <Property Name="bt_urgente" Type="bool" Nullable="false" />
+          <Property Name="dt_validade_prevista" Type="date" Nullable="false" />
+          <Property Name="vl_total" Type="decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="id_materia_prima" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_faltas">
+          <Key>
+            <PropertyRef Name="id_faltas" />
+          </Key>
+          <Property Name="id_faltas" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dt_falta" Type="date" Nullable="false" />
+          <Property Name="id_funcionario" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_fgts">
+          <Key>
+            <PropertyRef Name="id_fgts" />
+          </Key>
+          <Property Name="id_fgts" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="vl_fgts" Type="decimal" Precision="15" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_fopag">
+          <Key>
+            <PropertyRef Name="id_fopag" />
+          </Key>
+          <Property Name="id_fopag" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="qt_falta" Type="int" Nullable="false" />
+          <Property Name="vl_total_desconto" Type="decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="qt_hora_extra" Type="int" Nullable="false" />
+          <Property Name="vl_adicional_noturno" Type="decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="vl_gratificacao" Type="decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="vl_plr" Type="decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="vl_total_proventos" Type="decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="ds_adiantamento_semanal" Type="decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="dt_pagamento" Type="date" Nullable="false" />
+          <Property Name="vl_salario" Type="decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="ds_cnpj" Type="varchar" MaxLength="14" Nullable="false" />
+          <Property Name="vl_fgts" Type="decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="vl_ir" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="id_funcionario" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_fornecedores">
+          <Key>
+            <PropertyRef Name="id_fornecedores" />
+          </Key>
+          <Property Name="id_fornecedores" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nm_empresa_fornecedor" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ds_marca_fornecida" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ds_cnpj" Type="varchar" MaxLength="14" Nullable="false" />
+          <Property Name="ds_telefone" Type="varchar" MaxLength="11" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_funcionario">
+          <Key>
+            <PropertyRef Name="id_funcionario" />
+          </Key>
+          <Property Name="id_funcionario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nm_funcionario" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="dt_demitido" Type="date" Nullable="false" />
+          <Property Name="vl_inss" Type="decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="vl_salario_familia" Type="decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="vl_periculosidade" Type="decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="vl_insalubridade" Type="decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="nm_empresa" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="dt_adimissao" Type="date" Nullable="false" />
+          <Property Name="vl_salario_bruto" Type="decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="ds_cpf" Type="varchar" MaxLength="9" Nullable="false" />
+          <Property Name="ds_endereco" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ds_telefone" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="ds_email" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="dt_nascimento" Type="date" Nullable="false" />
+          <Property Name="id_seguro_vida" Type="int" Nullable="false" />
+          <Property Name="id_plano_de_saude" Type="int" Nullable="false" />
+          <Property Name="id_plano_odontologico" Type="int" Nullable="false" />
+          <Property Name="id_vale_transporte" Type="int" Nullable="false" />
+          <Property Name="id_vale_refeicao" Type="int" Nullable="false" />
+          <Property Name="id_vale_alimentacao" Type="int" Nullable="false" />
+          <Property Name="id_cargo" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_inss">
+          <Key>
+            <PropertyRef Name="id_inss" />
+          </Key>
+          <Property Name="id_inss" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ds_porcentagem" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="vl_salario_inicial" Type="decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="vl_salario_maximo" Type="decimal" Precision="15" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_log">
+          <Key>
+            <PropertyRef Name="id_log" />
+          </Key>
+          <Property Name="id_log" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dt_entrada" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="ds_tela" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="id_usuario" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_materia_prima">
+          <Key>
+            <PropertyRef Name="id_materia_prima" />
+          </Key>
+          <Property Name="id_materia_prima" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nm_produto" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="vl_preco" Type="decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="ds_categoria" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_plano_de_saude">
+          <Key>
+            <PropertyRef Name="id_plano_de_saude" />
+          </Key>
+          <Property Name="id_plano_de_saude" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ds_plano_funcionario" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="vl_plano" Type="decimal" Precision="15" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_plano_odontologico">
+          <Key>
+            <PropertyRef Name="id_plano_odontologico" />
+          </Key>
+          <Property Name="id_plano_odontologico" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ds_plano_funcionario" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="vl_plano" Type="decimal" Precision="15" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_produto">
+          <Key>
+            <PropertyRef Name="id_produtos" />
+          </Key>
+          <Property Name="id_produtos" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nm_produto" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="vl_preco" Type="decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="ds_categoria" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="ds_observacao" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_salario_familia">
+          <Key>
+            <PropertyRef Name="id_salario_familia" />
+          </Key>
+          <Property Name="id_salario_familia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="vl_salario_de" Type="decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="vl_salario_ate" Type="decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="vl_valor" Type="varchar" MaxLength="45" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_seguro_vida">
+          <Key>
+            <PropertyRef Name="id_seguro_vida" />
+          </Key>
+          <Property Name="id_seguro_vida" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ds_plano_funcionario" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="vl_plano" Type="decimal" Precision="15" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_taxa_vt">
+          <Key>
+            <PropertyRef Name="id_taxa_vt" />
+          </Key>
+          <Property Name="id_taxa_vt" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="vl_taxa" Type="decimal" Precision="15" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_usuario">
+          <Key>
+            <PropertyRef Name="id_usuario" />
+          </Key>
+          <Property Name="id_usuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nm_usuario" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="nm_senha" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ds-codigo_alteracao" Type="varchar" MaxLength="40" />
+          <Property Name="id_funcionario" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_vale_alimentacao">
+          <Key>
+            <PropertyRef Name="id_vale_alimentacao" />
+          </Key>
+          <Property Name="id_vale_alimentacao" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ds_codigo_va" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="vl_vale_alimentacao" Type="decimal" Precision="15" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_vale_refeicao">
+          <Key>
+            <PropertyRef Name="id_vale_refeicao" />
+          </Key>
+          <Property Name="id_vale_refeicao" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ds_codigo_vr" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="vl_vale_refeicao" Type="decimal" Precision="15" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_vale_transporte">
+          <Key>
+            <PropertyRef Name="id_vale_transporte" />
+          </Key>
+          <Property Name="id_vale_transporte" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="vl_vt" Type="decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="ds_codigo_uso" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="ds_codigo_bilhete_unico" Type="varchar" MaxLength="45" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_venda">
+          <Key>
+            <PropertyRef Name="id_venda" />
+          </Key>
+          <Property Name="id_venda" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dt_venda" Type="date" />
+          <Property Name="qt_parcelas" Type="int" />
+          <Property Name="ds_modo_pagamento" Type="varchar" MaxLength="45" />
+          <Property Name="vl_total_venda" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="id_funcionario" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_venda_produto">
+          <Key>
+            <PropertyRef Name="id_venda_produto" />
+          </Key>
+          <Property Name="id_venda_produto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="qt_produto" Type="int" Nullable="false" />
+          <Property Name="vl_total" Type="decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="id_venda" Type="int" Nullable="false" />
+          <Property Name="id_produtos" Type="int" Nullable="false" />
+          <Property Name="bt_vendido" Type="bool" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'def.db_a4f5a4_framedi.vw_fluxo_de_caixa' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_fluxo_de_caixa">
+          <Key>
+            <PropertyRef Name="tp_operacao" />
+          </Key>
+          <Property Name="dt_pagamento" Type="date" />
+          <Property Name="vl_operacao" Type="decimal" Precision="59" Scale="2" />
+          <Property Name="tp_operacao" Type="varchar" MaxLength="7" Nullable="false" />
+        </EntityType>
+        <Association Name="fk_tb_banco item_tb_custo1">
+          <End Role="tb_custo" Type="Self.tb_custo" Multiplicity="1" />
+          <End Role="tb_custo_item" Type="Self.tb_custo_item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_custo">
+              <PropertyRef Name="id_custo" />
+            </Principal>
+            <Dependent Role="tb_custo_item">
+              <PropertyRef Name="id_custo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tb_banco item_tb_materia_prima1">
+          <End Role="tb_materia_prima" Type="Self.tb_materia_prima" Multiplicity="1" />
+          <End Role="tb_custo_item" Type="Self.tb_custo_item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_materia_prima">
+              <PropertyRef Name="id_materia_prima" />
+            </Principal>
+            <Dependent Role="tb_custo_item">
+              <PropertyRef Name="id_materia_prima" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tb_custo_tb_fornecedores1">
+          <End Role="tb_fornecedores" Type="Self.tb_fornecedores" Multiplicity="1" />
+          <End Role="tb_custo" Type="Self.tb_custo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_fornecedores">
+              <PropertyRef Name="id_fornecedores" />
+            </Principal>
+            <Dependent Role="tb_custo">
+              <PropertyRef Name="id_fornecedores" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tb_estoque_tb_materia_prima1">
+          <End Role="tb_materia_prima" Type="Self.tb_materia_prima" Multiplicity="1" />
+          <End Role="tb_estoque" Type="Self.tb_estoque" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_materia_prima">
+              <PropertyRef Name="id_materia_prima" />
+            </Principal>
+            <Dependent Role="tb_estoque">
+              <PropertyRef Name="id_materia_prima" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tb_faltas_tb_funcionario1">
+          <End Role="tb_funcionario" Type="Self.tb_funcionario" Multiplicity="1" />
+          <End Role="tb_faltas" Type="Self.tb_faltas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_funcionario">
+              <PropertyRef Name="id_funcionario" />
+            </Principal>
+            <Dependent Role="tb_faltas">
+              <PropertyRef Name="id_funcionario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tb_fopag_tb_funcionario1">
+          <End Role="tb_funcionario" Type="Self.tb_funcionario" Multiplicity="1" />
+          <End Role="tb_fopag" Type="Self.tb_fopag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_funcionario">
+              <PropertyRef Name="id_funcionario" />
+            </Principal>
+            <Dependent Role="tb_fopag">
+              <PropertyRef Name="id_funcionario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tb_funcionario_tb_cargo1">
+          <End Role="tb_cargo" Type="Self.tb_cargo" Multiplicity="1" />
+          <End Role="tb_funcionario" Type="Self.tb_funcionario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_cargo">
+              <PropertyRef Name="id_cargo" />
+            </Principal>
+            <Dependent Role="tb_funcionario">
+              <PropertyRef Name="id_cargo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tb_funcionario_tb_plano_de_saude1">
+          <End Role="tb_plano_de_saude" Type="Self.tb_plano_de_saude" Multiplicity="1" />
+          <End Role="tb_funcionario" Type="Self.tb_funcionario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_plano_de_saude">
+              <PropertyRef Name="id_plano_de_saude" />
+            </Principal>
+            <Dependent Role="tb_funcionario">
+              <PropertyRef Name="id_plano_de_saude" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tb_funcionario_tb_plano_odontologico1">
+          <End Role="tb_plano_odontologico" Type="Self.tb_plano_odontologico" Multiplicity="1" />
+          <End Role="tb_funcionario" Type="Self.tb_funcionario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_plano_odontologico">
+              <PropertyRef Name="id_plano_odontologico" />
+            </Principal>
+            <Dependent Role="tb_funcionario">
+              <PropertyRef Name="id_plano_odontologico" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tb_funcionario_tb_seguro_vida1">
+          <End Role="tb_seguro_vida" Type="Self.tb_seguro_vida" Multiplicity="1" />
+          <End Role="tb_funcionario" Type="Self.tb_funcionario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_seguro_vida">
+              <PropertyRef Name="id_seguro_vida" />
+            </Principal>
+            <Dependent Role="tb_funcionario">
+              <PropertyRef Name="id_seguro_vida" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tb_funcionario_tb_vale_alimentacao1">
+          <End Role="tb_vale_alimentacao" Type="Self.tb_vale_alimentacao" Multiplicity="1" />
+          <End Role="tb_funcionario" Type="Self.tb_funcionario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_vale_alimentacao">
+              <PropertyRef Name="id_vale_alimentacao" />
+            </Principal>
+            <Dependent Role="tb_funcionario">
+              <PropertyRef Name="id_vale_alimentacao" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tb_funcionario_tb_vale_refeicao1">
+          <End Role="tb_vale_refeicao" Type="Self.tb_vale_refeicao" Multiplicity="1" />
+          <End Role="tb_funcionario" Type="Self.tb_funcionario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_vale_refeicao">
+              <PropertyRef Name="id_vale_refeicao" />
+            </Principal>
+            <Dependent Role="tb_funcionario">
+              <PropertyRef Name="id_vale_refeicao" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tb_funcionario_tb_vale_transporte1">
+          <End Role="tb_vale_transporte" Type="Self.tb_vale_transporte" Multiplicity="1" />
+          <End Role="tb_funcionario" Type="Self.tb_funcionario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_vale_transporte">
+              <PropertyRef Name="id_vale_transporte" />
+            </Principal>
+            <Dependent Role="tb_funcionario">
+              <PropertyRef Name="id_vale_transporte" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tb_log_tb_usuario1">
+          <End Role="tb_usuario" Type="Self.tb_usuario" Multiplicity="1" />
+          <End Role="tb_log" Type="Self.tb_log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_usuario">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="tb_log">
+              <PropertyRef Name="id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tb_usuario_tb_funcionario1">
+          <End Role="tb_funcionario" Type="Self.tb_funcionario" Multiplicity="1" />
+          <End Role="tb_usuario" Type="Self.tb_usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_funcionario">
+              <PropertyRef Name="id_funcionario" />
+            </Principal>
+            <Dependent Role="tb_usuario">
+              <PropertyRef Name="id_funcionario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tb_venda_produto_tb_produto1">
+          <End Role="tb_produto" Type="Self.tb_produto" Multiplicity="1" />
+          <End Role="tb_venda_produto" Type="Self.tb_venda_produto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_produto">
+              <PropertyRef Name="id_produtos" />
+            </Principal>
+            <Dependent Role="tb_venda_produto">
+              <PropertyRef Name="id_produtos" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tb_venda_produto_tb_venda1">
+          <End Role="tb_venda" Type="Self.tb_venda" Multiplicity="1" />
+          <End Role="tb_venda_produto" Type="Self.tb_venda_produto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_venda">
+              <PropertyRef Name="id_venda" />
+            </Principal>
+            <Dependent Role="tb_venda_produto">
+              <PropertyRef Name="id_venda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tb_venda_tb_funcionario1">
+          <End Role="tb_funcionario" Type="Self.tb_funcionario" Multiplicity="1" />
+          <End Role="tb_venda" Type="Self.tb_venda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_funcionario">
+              <PropertyRef Name="id_funcionario" />
+            </Principal>
+            <Dependent Role="tb_venda">
+              <PropertyRef Name="id_funcionario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="pc_listar_funcionario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="db_a4f5a4_framedi">
+          <Parameter Name="nome" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="larmscafeModelStoreContainer">
+          <EntitySet Name="tb_balanco_patrimonial" EntityType="Self.tb_balanco_patrimonial" Schema="db_a4f5a4_framedi" store:Type="Tables" />
+          <EntitySet Name="tb_cargo" EntityType="Self.tb_cargo" Schema="db_a4f5a4_framedi" store:Type="Tables" />
+          <EntitySet Name="tb_cliente" EntityType="Self.tb_cliente" Schema="db_a4f5a4_framedi" store:Type="Tables" />
+          <EntitySet Name="tb_custo" EntityType="Self.tb_custo" Schema="db_a4f5a4_framedi" store:Type="Tables" />
+          <EntitySet Name="tb_custo_item" EntityType="Self.tb_custo_item" Schema="db_a4f5a4_framedi" store:Type="Tables" />
+          <EntitySet Name="tb_despesa" EntityType="Self.tb_despesa" Schema="db_a4f5a4_framedi" store:Type="Tables" />
+          <EntitySet Name="tb_estoque" EntityType="Self.tb_estoque" Schema="db_a4f5a4_framedi" store:Type="Tables" />
+          <EntitySet Name="tb_faltas" EntityType="Self.tb_faltas" Schema="db_a4f5a4_framedi" store:Type="Tables" />
+          <EntitySet Name="tb_fgts" EntityType="Self.tb_fgts" Schema="db_a4f5a4_framedi" store:Type="Tables" />
+          <EntitySet Name="tb_fopag" EntityType="Self.tb_fopag" Schema="db_a4f5a4_framedi" store:Type="Tables" />
+          <EntitySet Name="tb_fornecedores" EntityType="Self.tb_fornecedores" Schema="db_a4f5a4_framedi" store:Type="Tables" />
+          <EntitySet Name="tb_funcionario" EntityType="Self.tb_funcionario" Schema="db_a4f5a4_framedi" store:Type="Tables" />
+          <EntitySet Name="tb_inss" EntityType="Self.tb_inss" Schema="db_a4f5a4_framedi" store:Type="Tables" />
+          <EntitySet Name="tb_log" EntityType="Self.tb_log" Schema="db_a4f5a4_framedi" store:Type="Tables" />
+          <EntitySet Name="tb_materia_prima" EntityType="Self.tb_materia_prima" Schema="db_a4f5a4_framedi" store:Type="Tables" />
+          <EntitySet Name="tb_plano_de_saude" EntityType="Self.tb_plano_de_saude" Schema="db_a4f5a4_framedi" store:Type="Tables" />
+          <EntitySet Name="tb_plano_odontologico" EntityType="Self.tb_plano_odontologico" Schema="db_a4f5a4_framedi" store:Type="Tables" />
+          <EntitySet Name="tb_produto" EntityType="Self.tb_produto" Schema="db_a4f5a4_framedi" store:Type="Tables" />
+          <EntitySet Name="tb_salario_familia" EntityType="Self.tb_salario_familia" Schema="db_a4f5a4_framedi" store:Type="Tables" />
+          <EntitySet Name="tb_seguro_vida" EntityType="Self.tb_seguro_vida" Schema="db_a4f5a4_framedi" store:Type="Tables" />
+          <EntitySet Name="tb_taxa_vt" EntityType="Self.tb_taxa_vt" Schema="db_a4f5a4_framedi" store:Type="Tables" />
+          <EntitySet Name="tb_usuario" EntityType="Self.tb_usuario" Schema="db_a4f5a4_framedi" store:Type="Tables" />
+          <EntitySet Name="tb_vale_alimentacao" EntityType="Self.tb_vale_alimentacao" Schema="db_a4f5a4_framedi" store:Type="Tables" />
+          <EntitySet Name="tb_vale_refeicao" EntityType="Self.tb_vale_refeicao" Schema="db_a4f5a4_framedi" store:Type="Tables" />
+          <EntitySet Name="tb_vale_transporte" EntityType="Self.tb_vale_transporte" Schema="db_a4f5a4_framedi" store:Type="Tables" />
+          <EntitySet Name="tb_venda" EntityType="Self.tb_venda" Schema="db_a4f5a4_framedi" store:Type="Tables" />
+          <EntitySet Name="tb_venda_produto" EntityType="Self.tb_venda_produto" Schema="db_a4f5a4_framedi" store:Type="Tables" />
+          <EntitySet Name="vw_fluxo_de_caixa" EntityType="Self.vw_fluxo_de_caixa" store:Type="Views" store:Schema="db_a4f5a4_framedi">
+            <DefiningQuery>SELECT
+`vw_fluxo_de_caixa`.`dt_pagamento`, 
+`vw_fluxo_de_caixa`.`vl_operacao`, 
+`vw_fluxo_de_caixa`.`tp_operacao`
+FROM `vw_fluxo_de_caixa` AS `vw_fluxo_de_caixa`</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="fk_tb_banco item_tb_custo1" Association="Self.fk_tb_banco item_tb_custo1">
+            <End Role="tb_custo" EntitySet="tb_custo" />
+            <End Role="tb_custo_item" EntitySet="tb_custo_item" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tb_banco item_tb_materia_prima1" Association="Self.fk_tb_banco item_tb_materia_prima1">
+            <End Role="tb_materia_prima" EntitySet="tb_materia_prima" />
+            <End Role="tb_custo_item" EntitySet="tb_custo_item" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tb_custo_tb_fornecedores1" Association="Self.fk_tb_custo_tb_fornecedores1">
+            <End Role="tb_fornecedores" EntitySet="tb_fornecedores" />
+            <End Role="tb_custo" EntitySet="tb_custo" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tb_estoque_tb_materia_prima1" Association="Self.fk_tb_estoque_tb_materia_prima1">
+            <End Role="tb_materia_prima" EntitySet="tb_materia_prima" />
+            <End Role="tb_estoque" EntitySet="tb_estoque" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tb_faltas_tb_funcionario1" Association="Self.fk_tb_faltas_tb_funcionario1">
+            <End Role="tb_funcionario" EntitySet="tb_funcionario" />
+            <End Role="tb_faltas" EntitySet="tb_faltas" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tb_fopag_tb_funcionario1" Association="Self.fk_tb_fopag_tb_funcionario1">
+            <End Role="tb_funcionario" EntitySet="tb_funcionario" />
+            <End Role="tb_fopag" EntitySet="tb_fopag" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tb_funcionario_tb_cargo1" Association="Self.fk_tb_funcionario_tb_cargo1">
+            <End Role="tb_cargo" EntitySet="tb_cargo" />
+            <End Role="tb_funcionario" EntitySet="tb_funcionario" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tb_funcionario_tb_plano_de_saude1" Association="Self.fk_tb_funcionario_tb_plano_de_saude1">
+            <End Role="tb_plano_de_saude" EntitySet="tb_plano_de_saude" />
+            <End Role="tb_funcionario" EntitySet="tb_funcionario" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tb_funcionario_tb_plano_odontologico1" Association="Self.fk_tb_funcionario_tb_plano_odontologico1">
+            <End Role="tb_plano_odontologico" EntitySet="tb_plano_odontologico" />
+            <End Role="tb_funcionario" EntitySet="tb_funcionario" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tb_funcionario_tb_seguro_vida1" Association="Self.fk_tb_funcionario_tb_seguro_vida1">
+            <End Role="tb_seguro_vida" EntitySet="tb_seguro_vida" />
+            <End Role="tb_funcionario" EntitySet="tb_funcionario" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tb_funcionario_tb_vale_alimentacao1" Association="Self.fk_tb_funcionario_tb_vale_alimentacao1">
+            <End Role="tb_vale_alimentacao" EntitySet="tb_vale_alimentacao" />
+            <End Role="tb_funcionario" EntitySet="tb_funcionario" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tb_funcionario_tb_vale_refeicao1" Association="Self.fk_tb_funcionario_tb_vale_refeicao1">
+            <End Role="tb_vale_refeicao" EntitySet="tb_vale_refeicao" />
+            <End Role="tb_funcionario" EntitySet="tb_funcionario" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tb_funcionario_tb_vale_transporte1" Association="Self.fk_tb_funcionario_tb_vale_transporte1">
+            <End Role="tb_vale_transporte" EntitySet="tb_vale_transporte" />
+            <End Role="tb_funcionario" EntitySet="tb_funcionario" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tb_log_tb_usuario1" Association="Self.fk_tb_log_tb_usuario1">
+            <End Role="tb_usuario" EntitySet="tb_usuario" />
+            <End Role="tb_log" EntitySet="tb_log" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tb_usuario_tb_funcionario1" Association="Self.fk_tb_usuario_tb_funcionario1">
+            <End Role="tb_funcionario" EntitySet="tb_funcionario" />
+            <End Role="tb_usuario" EntitySet="tb_usuario" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tb_venda_produto_tb_produto1" Association="Self.fk_tb_venda_produto_tb_produto1">
+            <End Role="tb_produto" EntitySet="tb_produto" />
+            <End Role="tb_venda_produto" EntitySet="tb_venda_produto" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tb_venda_produto_tb_venda1" Association="Self.fk_tb_venda_produto_tb_venda1">
+            <End Role="tb_venda" EntitySet="tb_venda" />
+            <End Role="tb_venda_produto" EntitySet="tb_venda_produto" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tb_venda_tb_funcionario1" Association="Self.fk_tb_venda_tb_funcionario1">
+            <End Role="tb_funcionario" EntitySet="tb_funcionario" />
+            <End Role="tb_venda" EntitySet="tb_venda" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="larmscafeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="larmscafeEntities1" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="pc_listar_funcionario" ReturnType="Collection(larmscafeModel.pc_listar_funcionario_Result)">
+          <Parameter Name="nome" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="tb_balanco_patrimonial" EntityType="larmscafeModel.tb_balanco_patrimonial" />
+          <EntitySet Name="tb_cargo" EntityType="larmscafeModel.tb_cargo" />
+          <EntitySet Name="tb_cliente" EntityType="larmscafeModel.tb_cliente" />
+          <EntitySet Name="tb_custo" EntityType="larmscafeModel.tb_custo" />
+          <EntitySet Name="tb_custo_item" EntityType="larmscafeModel.tb_custo_item" />
+          <EntitySet Name="tb_despesa" EntityType="larmscafeModel.tb_despesa" />
+          <EntitySet Name="tb_estoque" EntityType="larmscafeModel.tb_estoque" />
+          <EntitySet Name="tb_faltas" EntityType="larmscafeModel.tb_faltas" />
+          <EntitySet Name="tb_fgts" EntityType="larmscafeModel.tb_fgts" />
+          <EntitySet Name="tb_fopag" EntityType="larmscafeModel.tb_fopag" />
+          <EntitySet Name="tb_fornecedores" EntityType="larmscafeModel.tb_fornecedores" />
+          <EntitySet Name="tb_funcionario" EntityType="larmscafeModel.tb_funcionario" />
+          <EntitySet Name="tb_inss" EntityType="larmscafeModel.tb_inss" />
+          <EntitySet Name="tb_log" EntityType="larmscafeModel.tb_log" />
+          <EntitySet Name="tb_materia_prima" EntityType="larmscafeModel.tb_materia_prima" />
+          <EntitySet Name="tb_plano_de_saude" EntityType="larmscafeModel.tb_plano_de_saude" />
+          <EntitySet Name="tb_plano_odontologico" EntityType="larmscafeModel.tb_plano_odontologico" />
+          <EntitySet Name="tb_produto" EntityType="larmscafeModel.tb_produto" />
+          <EntitySet Name="tb_salario_familia" EntityType="larmscafeModel.tb_salario_familia" />
+          <EntitySet Name="tb_seguro_vida" EntityType="larmscafeModel.tb_seguro_vida" />
+          <EntitySet Name="tb_taxa_vt" EntityType="larmscafeModel.tb_taxa_vt" />
+          <EntitySet Name="tb_usuario" EntityType="larmscafeModel.tb_usuario" />
+          <EntitySet Name="tb_vale_alimentacao" EntityType="larmscafeModel.tb_vale_alimentacao" />
+          <EntitySet Name="tb_vale_refeicao" EntityType="larmscafeModel.tb_vale_refeicao" />
+          <EntitySet Name="tb_vale_transporte" EntityType="larmscafeModel.tb_vale_transporte" />
+          <EntitySet Name="tb_venda" EntityType="larmscafeModel.tb_venda" />
+          <EntitySet Name="tb_venda_produto" EntityType="larmscafeModel.tb_venda_produto" />
+          <EntitySet Name="vw_fluxo_de_caixa" EntityType="larmscafeModel.vw_fluxo_de_caixa" />
+          <AssociationSet Name="fk_tb_funcionario_tb_cargo1" Association="larmscafeModel.fk_tb_funcionario_tb_cargo1">
+            <End Role="tb_cargo" EntitySet="tb_cargo" />
+            <End Role="tb_funcionario" EntitySet="tb_funcionario" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tb_banco_item_tb_custo1" Association="larmscafeModel.fk_tb_banco_item_tb_custo1">
+            <End Role="tb_custo" EntitySet="tb_custo" />
+            <End Role="tb_custo_item" EntitySet="tb_custo_item" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tb_custo_tb_fornecedores1" Association="larmscafeModel.fk_tb_custo_tb_fornecedores1">
+            <End Role="tb_fornecedores" EntitySet="tb_fornecedores" />
+            <End Role="tb_custo" EntitySet="tb_custo" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tb_banco_item_tb_materia_prima1" Association="larmscafeModel.fk_tb_banco_item_tb_materia_prima1">
+            <End Role="tb_materia_prima" EntitySet="tb_materia_prima" />
+            <End Role="tb_custo_item" EntitySet="tb_custo_item" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tb_estoque_tb_materia_prima1" Association="larmscafeModel.fk_tb_estoque_tb_materia_prima1">
+            <End Role="tb_materia_prima" EntitySet="tb_materia_prima" />
+            <End Role="tb_estoque" EntitySet="tb_estoque" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tb_faltas_tb_funcionario1" Association="larmscafeModel.fk_tb_faltas_tb_funcionario1">
+            <End Role="tb_funcionario" EntitySet="tb_funcionario" />
+            <End Role="tb_faltas" EntitySet="tb_faltas" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tb_fopag_tb_funcionario1" Association="larmscafeModel.fk_tb_fopag_tb_funcionario1">
+            <End Role="tb_funcionario" EntitySet="tb_funcionario" />
+            <End Role="tb_fopag" EntitySet="tb_fopag" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tb_funcionario_tb_plano_de_saude1" Association="larmscafeModel.fk_tb_funcionario_tb_plano_de_saude1">
+            <End Role="tb_plano_de_saude" EntitySet="tb_plano_de_saude" />
+            <End Role="tb_funcionario" EntitySet="tb_funcionario" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tb_funcionario_tb_plano_odontologico1" Association="larmscafeModel.fk_tb_funcionario_tb_plano_odontologico1">
+            <End Role="tb_plano_odontologico" EntitySet="tb_plano_odontologico" />
+            <End Role="tb_funcionario" EntitySet="tb_funcionario" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tb_funcionario_tb_seguro_vida1" Association="larmscafeModel.fk_tb_funcionario_tb_seguro_vida1">
+            <End Role="tb_seguro_vida" EntitySet="tb_seguro_vida" />
+            <End Role="tb_funcionario" EntitySet="tb_funcionario" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tb_funcionario_tb_vale_alimentacao1" Association="larmscafeModel.fk_tb_funcionario_tb_vale_alimentacao1">
+            <End Role="tb_vale_alimentacao" EntitySet="tb_vale_alimentacao" />
+            <End Role="tb_funcionario" EntitySet="tb_funcionario" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tb_funcionario_tb_vale_refeicao1" Association="larmscafeModel.fk_tb_funcionario_tb_vale_refeicao1">
+            <End Role="tb_vale_refeicao" EntitySet="tb_vale_refeicao" />
+            <End Role="tb_funcionario" EntitySet="tb_funcionario" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tb_funcionario_tb_vale_transporte1" Association="larmscafeModel.fk_tb_funcionario_tb_vale_transporte1">
+            <End Role="tb_vale_transporte" EntitySet="tb_vale_transporte" />
+            <End Role="tb_funcionario" EntitySet="tb_funcionario" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tb_usuario_tb_funcionario1" Association="larmscafeModel.fk_tb_usuario_tb_funcionario1">
+            <End Role="tb_funcionario" EntitySet="tb_funcionario" />
+            <End Role="tb_usuario" EntitySet="tb_usuario" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tb_venda_tb_funcionario1" Association="larmscafeModel.fk_tb_venda_tb_funcionario1">
+            <End Role="tb_funcionario" EntitySet="tb_funcionario" />
+            <End Role="tb_venda" EntitySet="tb_venda" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tb_log_tb_usuario1" Association="larmscafeModel.fk_tb_log_tb_usuario1">
+            <End Role="tb_usuario" EntitySet="tb_usuario" />
+            <End Role="tb_log" EntitySet="tb_log" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tb_venda_produto_tb_produto1" Association="larmscafeModel.fk_tb_venda_produto_tb_produto1">
+            <End Role="tb_produto" EntitySet="tb_produto" />
+            <End Role="tb_venda_produto" EntitySet="tb_venda_produto" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tb_venda_produto_tb_venda1" Association="larmscafeModel.fk_tb_venda_produto_tb_venda1">
+            <End Role="tb_venda" EntitySet="tb_venda" />
+            <End Role="tb_venda_produto" EntitySet="tb_venda_produto" />
+          </AssociationSet>
+        </EntityContainer>
+        <ComplexType Name="pc_listar_funcionario_Result" />
+        <EntityType Name="tb_balanco_patrimonial">
+          <Key>
+            <PropertyRef Name="id_balanco_patrimonial" />
+          </Key>
+          <Property Name="id_balanco_patrimonial" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nm_referencia" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="vl_valor" Type="Decimal" Nullable="false" />
+          <Property Name="dt_data" Type="DateTime" Nullable="false" />
+          <Property Name="ds_categoria" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tb_cargo">
+          <Key>
+            <PropertyRef Name="id_cargo" />
+          </Key>
+          <Property Name="id_cargo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ds_cargo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ds_codigo_cargo" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tb_funcionario" Relationship="larmscafeModel.fk_tb_funcionario_tb_cargo1" FromRole="tb_cargo" ToRole="tb_funcionario" />
+        </EntityType>
+        <EntityType Name="tb_cliente">
+          <Key>
+            <PropertyRef Name="id_cliente" />
+          </Key>
+          <Property Name="id_cliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nm_cliente" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="ds_telefone" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="ds_endereco" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="dt_primeira_compra" Type="DateTime" Nullable="false" />
+          <Property Name="bt_ativo" Type="Boolean" Nullable="false" />
+          <Property Name="bt_fidelizado" Type="Boolean" Nullable="false" />
+          <Property Name="ds_email" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tb_custo">
+          <Key>
+            <PropertyRef Name="id_custo" />
+          </Key>
+          <Property Name="id_custo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="qt_quantidade_compra" Type="Int32" Nullable="false" />
+          <Property Name="vl_total" Type="Decimal" Nullable="false" />
+          <Property Name="dt_compra" Type="DateTime" Nullable="false" />
+          <Property Name="id_fornecedores" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tb_custo_item" Relationship="larmscafeModel.fk_tb_banco_item_tb_custo1" FromRole="tb_custo" ToRole="tb_custo_item" />
+          <NavigationProperty Name="tb_fornecedores" Relationship="larmscafeModel.fk_tb_custo_tb_fornecedores1" FromRole="tb_custo" ToRole="tb_fornecedores" />
+        </EntityType>
+        <EntityType Name="tb_custo_item">
+          <Key>
+            <PropertyRef Name="id_custo__item" />
+          </Key>
+          <Property Name="id_custo__item" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="vl_preco_unitario" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="id_materia_prima" Type="Int32" Nullable="false" />
+          <Property Name="id_custo" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tb_custo" Relationship="larmscafeModel.fk_tb_banco_item_tb_custo1" FromRole="tb_custo_item" ToRole="tb_custo" />
+          <NavigationProperty Name="tb_materia_prima" Relationship="larmscafeModel.fk_tb_banco_item_tb_materia_prima1" FromRole="tb_custo_item" ToRole="tb_materia_prima" />
+        </EntityType>
+        <EntityType Name="tb_despesa">
+          <Key>
+            <PropertyRef Name="id_fluxo_caixa" />
+          </Key>
+          <Property Name="id_fluxo_caixa" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nm_referencia" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="ds_previsto" Type="Decimal" Nullable="false" />
+          <Property Name="ds_realizado" Type="Decimal" Nullable="false" />
+          <Property Name="dt_entrada" Type="DateTime" Nullable="false" />
+          <Property Name="dt_saida" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_estoque">
+          <Key>
+            <PropertyRef Name="id_estoque" />
+          </Key>
+          <Property Name="id_estoque" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="qt_estoque" Type="Int32" Nullable="false" />
+          <Property Name="ds_situacao_produto" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ds_especificacao" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="bt_abastecer" Type="Boolean" Nullable="false" />
+          <Property Name="bt_urgente" Type="Boolean" Nullable="false" />
+          <Property Name="dt_validade_prevista" Type="DateTime" Nullable="false" />
+          <Property Name="vl_total" Type="Decimal" Nullable="false" />
+          <Property Name="id_materia_prima" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tb_materia_prima" Relationship="larmscafeModel.fk_tb_estoque_tb_materia_prima1" FromRole="tb_estoque" ToRole="tb_materia_prima" />
+        </EntityType>
+        <EntityType Name="tb_faltas">
+          <Key>
+            <PropertyRef Name="id_faltas" />
+          </Key>
+          <Property Name="id_faltas" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dt_falta" Type="DateTime" Nullable="false" />
+          <Property Name="id_funcionario" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tb_funcionario" Relationship="larmscafeModel.fk_tb_faltas_tb_funcionario1" FromRole="tb_faltas" ToRole="tb_funcionario" />
+        </EntityType>
+        <EntityType Name="tb_fgts">
+          <Key>
+            <PropertyRef Name="id_fgts" />
+          </Key>
+          <Property Name="id_fgts" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="vl_fgts" Type="Decimal" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_fopag">
+          <Key>
+            <PropertyRef Name="id_fopag" />
+          </Key>
+          <Property Name="id_fopag" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="qt_falta" Type="Int32" Nullable="false" />
+          <Property Name="vl_total_desconto" Type="Decimal" Nullable="false" />
+          <Property Name="qt_hora_extra" Type="Int32" Nullable="false" />
+          <Property Name="vl_adicional_noturno" Type="Decimal" Nullable="false" />
+          <Property Name="vl_gratificacao" Type="Decimal" Nullable="false" />
+          <Property Name="vl_plr" Type="Decimal" Nullable="false" />
+          <Property Name="vl_total_proventos" Type="Decimal" Nullable="false" />
+          <Property Name="ds_adiantamento_semanal" Type="Decimal" Nullable="false" />
+          <Property Name="dt_pagamento" Type="DateTime" Nullable="false" />
+          <Property Name="vl_salario" Type="Decimal" Nullable="false" />
+          <Property Name="ds_cnpj" Type="String" Nullable="false" MaxLength="14" FixedLength="false" Unicode="false" />
+          <Property Name="vl_fgts" Type="Decimal" Nullable="false" />
+          <Property Name="vl_ir" Type="Decimal" />
+          <Property Name="id_funcionario" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tb_funcionario" Relationship="larmscafeModel.fk_tb_fopag_tb_funcionario1" FromRole="tb_fopag" ToRole="tb_funcionario" />
+        </EntityType>
+        <EntityType Name="tb_fornecedores">
+          <Key>
+            <PropertyRef Name="id_fornecedores" />
+          </Key>
+          <Property Name="id_fornecedores" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nm_empresa_fornecedor" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ds_marca_fornecida" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ds_cnpj" Type="String" Nullable="false" MaxLength="14" FixedLength="false" Unicode="false" />
+          <Property Name="ds_telefone" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tb_custo" Relationship="larmscafeModel.fk_tb_custo_tb_fornecedores1" FromRole="tb_fornecedores" ToRole="tb_custo" />
+        </EntityType>
+        <EntityType Name="tb_funcionario">
+          <Key>
+            <PropertyRef Name="id_funcionario" />
+          </Key>
+          <Property Name="id_funcionario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nm_funcionario" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="dt_demitido" Type="DateTime" Nullable="false" />
+          <Property Name="vl_inss" Type="Decimal" Nullable="false" />
+          <Property Name="vl_salario_familia" Type="Decimal" Nullable="false" />
+          <Property Name="vl_periculosidade" Type="Decimal" Nullable="false" />
+          <Property Name="vl_insalubridade" Type="Decimal" Nullable="false" />
+          <Property Name="nm_empresa" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="dt_adimissao" Type="DateTime" Nullable="false" />
+          <Property Name="vl_salario_bruto" Type="Decimal" Nullable="false" />
+          <Property Name="ds_cpf" Type="String" Nullable="false" MaxLength="9" FixedLength="false" Unicode="false" />
+          <Property Name="ds_endereco" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ds_telefone" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="ds_email" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="dt_nascimento" Type="DateTime" Nullable="false" />
+          <Property Name="id_seguro_vida" Type="Int32" Nullable="false" />
+          <Property Name="id_plano_de_saude" Type="Int32" Nullable="false" />
+          <Property Name="id_plano_odontologico" Type="Int32" Nullable="false" />
+          <Property Name="id_vale_transporte" Type="Int32" Nullable="false" />
+          <Property Name="id_vale_refeicao" Type="Int32" Nullable="false" />
+          <Property Name="id_vale_alimentacao" Type="Int32" Nullable="false" />
+          <Property Name="id_cargo" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tb_cargo" Relationship="larmscafeModel.fk_tb_funcionario_tb_cargo1" FromRole="tb_funcionario" ToRole="tb_cargo" />
+          <NavigationProperty Name="tb_faltas" Relationship="larmscafeModel.fk_tb_faltas_tb_funcionario1" FromRole="tb_funcionario" ToRole="tb_faltas" />
+          <NavigationProperty Name="tb_fopag" Relationship="larmscafeModel.fk_tb_fopag_tb_funcionario1" FromRole="tb_funcionario" ToRole="tb_fopag" />
+          <NavigationProperty Name="tb_plano_de_saude" Relationship="larmscafeModel.fk_tb_funcionario_tb_plano_de_saude1" FromRole="tb_funcionario" ToRole="tb_plano_de_saude" />
+          <NavigationProperty Name="tb_plano_odontologico" Relationship="larmscafeModel.fk_tb_funcionario_tb_plano_odontologico1" FromRole="tb_funcionario" ToRole="tb_plano_odontologico" />
+          <NavigationProperty Name="tb_seguro_vida" Relationship="larmscafeModel.fk_tb_funcionario_tb_seguro_vida1" FromRole="tb_funcionario" ToRole="tb_seguro_vida" />
+          <NavigationProperty Name="tb_vale_alimentacao" Relationship="larmscafeModel.fk_tb_funcionario_tb_vale_alimentacao1" FromRole="tb_funcionario" ToRole="tb_vale_alimentacao" />
+          <NavigationProperty Name="tb_vale_refeicao" Relationship="larmscafeModel.fk_tb_funcionario_tb_vale_refeicao1" FromRole="tb_funcionario" ToRole="tb_vale_refeicao" />
+          <NavigationProperty Name="tb_vale_transporte" Relationship="larmscafeModel.fk_tb_funcionario_tb_vale_transporte1" FromRole="tb_funcionario" ToRole="tb_vale_transporte" />
+          <NavigationProperty Name="tb_usuario" Relationship="larmscafeModel.fk_tb_usuario_tb_funcionario1" FromRole="tb_funcionario" ToRole="tb_usuario" />
+          <NavigationProperty Name="tb_venda" Relationship="larmscafeModel.fk_tb_venda_tb_funcionario1" FromRole="tb_funcionario" ToRole="tb_venda" />
+        </EntityType>
+        <EntityType Name="tb_inss">
+          <Key>
+            <PropertyRef Name="id_inss" />
+          </Key>
+          <Property Name="id_inss" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ds_porcentagem" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="vl_salario_inicial" Type="Decimal" Nullable="false" />
+          <Property Name="vl_salario_maximo" Type="Decimal" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_log">
+          <Key>
+            <PropertyRef Name="id_log" />
+          </Key>
+          <Property Name="id_log" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dt_entrada" Type="DateTime" Nullable="false" />
+          <Property Name="ds_tela" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="id_usuario" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tb_usuario" Relationship="larmscafeModel.fk_tb_log_tb_usuario1" FromRole="tb_log" ToRole="tb_usuario" />
+        </EntityType>
+        <EntityType Name="tb_materia_prima">
+          <Key>
+            <PropertyRef Name="id_materia_prima" />
+          </Key>
+          <Property Name="id_materia_prima" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nm_produto" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="vl_preco" Type="Decimal" Nullable="false" />
+          <Property Name="ds_categoria" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tb_custo_item" Relationship="larmscafeModel.fk_tb_banco_item_tb_materia_prima1" FromRole="tb_materia_prima" ToRole="tb_custo_item" />
+          <NavigationProperty Name="tb_estoque" Relationship="larmscafeModel.fk_tb_estoque_tb_materia_prima1" FromRole="tb_materia_prima" ToRole="tb_estoque" />
+        </EntityType>
+        <EntityType Name="tb_plano_de_saude">
+          <Key>
+            <PropertyRef Name="id_plano_de_saude" />
+          </Key>
+          <Property Name="id_plano_de_saude" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ds_plano_funcionario" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="vl_plano" Type="Decimal" Nullable="false" />
+          <NavigationProperty Name="tb_funcionario" Relationship="larmscafeModel.fk_tb_funcionario_tb_plano_de_saude1" FromRole="tb_plano_de_saude" ToRole="tb_funcionario" />
+        </EntityType>
+        <EntityType Name="tb_plano_odontologico">
+          <Key>
+            <PropertyRef Name="id_plano_odontologico" />
+          </Key>
+          <Property Name="id_plano_odontologico" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ds_plano_funcionario" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="vl_plano" Type="Decimal" Nullable="false" />
+          <NavigationProperty Name="tb_funcionario" Relationship="larmscafeModel.fk_tb_funcionario_tb_plano_odontologico1" FromRole="tb_plano_odontologico" ToRole="tb_funcionario" />
+        </EntityType>
+        <EntityType Name="tb_produto">
+          <Key>
+            <PropertyRef Name="id_produtos" />
+          </Key>
+          <Property Name="id_produtos" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nm_produto" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="vl_preco" Type="Decimal" Nullable="false" />
+          <Property Name="ds_categoria" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="ds_observacao" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tb_venda_produto" Relationship="larmscafeModel.fk_tb_venda_produto_tb_produto1" FromRole="tb_produto" ToRole="tb_venda_produto" />
+        </EntityType>
+        <EntityType Name="tb_salario_familia">
+          <Key>
+            <PropertyRef Name="id_salario_familia" />
+          </Key>
+          <Property Name="id_salario_familia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="vl_salario_de" Type="Decimal" Nullable="false" />
+          <Property Name="vl_salario_ate" Type="Decimal" Nullable="false" />
+          <Property Name="vl_valor" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tb_seguro_vida">
+          <Key>
+            <PropertyRef Name="id_seguro_vida" />
+          </Key>
+          <Property Name="id_seguro_vida" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ds_plano_funcionario" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="vl_plano" Type="Decimal" Nullable="false" />
+          <NavigationProperty Name="tb_funcionario" Relationship="larmscafeModel.fk_tb_funcionario_tb_seguro_vida1" FromRole="tb_seguro_vida" ToRole="tb_funcionario" />
+        </EntityType>
+        <EntityType Name="tb_taxa_vt">
+          <Key>
+            <PropertyRef Name="id_taxa_vt" />
+          </Key>
+          <Property Name="id_taxa_vt" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="vl_taxa" Type="Decimal" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_usuario">
+          <Key>
+            <PropertyRef Name="id_usuario" />
+          </Key>
+          <Property Name="id_usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nm_usuario" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="nm_senha" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ds_codigo_alteracao" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="id_funcionario" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tb_funcionario" Relationship="larmscafeModel.fk_tb_usuario_tb_funcionario1" FromRole="tb_usuario" ToRole="tb_funcionario" />
+          <NavigationProperty Name="tb_log" Relationship="larmscafeModel.fk_tb_log_tb_usuario1" FromRole="tb_usuario" ToRole="tb_log" />
+        </EntityType>
+        <EntityType Name="tb_vale_alimentacao">
+          <Key>
+            <PropertyRef Name="id_vale_alimentacao" />
+          </Key>
+          <Property Name="id_vale_alimentacao" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ds_codigo_va" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="vl_vale_alimentacao" Type="Decimal" Nullable="false" />
+          <NavigationProperty Name="tb_funcionario" Relationship="larmscafeModel.fk_tb_funcionario_tb_vale_alimentacao1" FromRole="tb_vale_alimentacao" ToRole="tb_funcionario" />
+        </EntityType>
+        <EntityType Name="tb_vale_refeicao">
+          <Key>
+            <PropertyRef Name="id_vale_refeicao" />
+          </Key>
+          <Property Name="id_vale_refeicao" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ds_codigo_vr" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="vl_vale_refeicao" Type="Decimal" Nullable="false" />
+          <NavigationProperty Name="tb_funcionario" Relationship="larmscafeModel.fk_tb_funcionario_tb_vale_refeicao1" FromRole="tb_vale_refeicao" ToRole="tb_funcionario" />
+        </EntityType>
+        <EntityType Name="tb_vale_transporte">
+          <Key>
+            <PropertyRef Name="id_vale_transporte" />
+          </Key>
+          <Property Name="id_vale_transporte" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="vl_vt" Type="Decimal" Nullable="false" />
+          <Property Name="ds_codigo_uso" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="ds_codigo_bilhete_unico" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tb_funcionario" Relationship="larmscafeModel.fk_tb_funcionario_tb_vale_transporte1" FromRole="tb_vale_transporte" ToRole="tb_funcionario" />
+        </EntityType>
+        <EntityType Name="tb_venda">
+          <Key>
+            <PropertyRef Name="id_venda" />
+          </Key>
+          <Property Name="id_venda" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dt_venda" Type="DateTime" />
+          <Property Name="qt_parcelas" Type="Int32" />
+          <Property Name="ds_modo_pagamento" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="vl_total_venda" Type="Decimal" />
+          <Property Name="id_funcionario" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tb_funcionario" Relationship="larmscafeModel.fk_tb_venda_tb_funcionario1" FromRole="tb_venda" ToRole="tb_funcionario" />
+          <NavigationProperty Name="tb_venda_produto" Relationship="larmscafeModel.fk_tb_venda_produto_tb_venda1" FromRole="tb_venda" ToRole="tb_venda_produto" />
+        </EntityType>
+        <EntityType Name="tb_venda_produto">
+          <Key>
+            <PropertyRef Name="id_venda_produto" />
+          </Key>
+          <Property Name="id_venda_produto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="qt_produto" Type="Int32" Nullable="false" />
+          <Property Name="vl_total" Type="Decimal" Nullable="false" />
+          <Property Name="id_venda" Type="Int32" Nullable="false" />
+          <Property Name="id_produtos" Type="Int32" Nullable="false" />
+          <Property Name="bt_vendido" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="tb_produto" Relationship="larmscafeModel.fk_tb_venda_produto_tb_produto1" FromRole="tb_venda_produto" ToRole="tb_produto" />
+          <NavigationProperty Name="tb_venda" Relationship="larmscafeModel.fk_tb_venda_produto_tb_venda1" FromRole="tb_venda_produto" ToRole="tb_venda" />
+        </EntityType>
+        <EntityType Name="vw_fluxo_de_caixa">
+          <Key>
+            <PropertyRef Name="tp_operacao" />
+          </Key>
+          <Property Name="dt_pagamento" Type="DateTime" />
+          <Property Name="vl_operacao" Type="Decimal" />
+          <Property Name="tp_operacao" Type="String" Nullable="false" MaxLength="7" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="fk_tb_funcionario_tb_cargo1">
+          <End Type="larmscafeModel.tb_cargo" Role="tb_cargo" Multiplicity="1" />
+          <End Type="larmscafeModel.tb_funcionario" Role="tb_funcionario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_cargo">
+              <PropertyRef Name="id_cargo" />
+            </Principal>
+            <Dependent Role="tb_funcionario">
+              <PropertyRef Name="id_cargo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tb_banco_item_tb_custo1">
+          <End Type="larmscafeModel.tb_custo" Role="tb_custo" Multiplicity="1" />
+          <End Type="larmscafeModel.tb_custo_item" Role="tb_custo_item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_custo">
+              <PropertyRef Name="id_custo" />
+            </Principal>
+            <Dependent Role="tb_custo_item">
+              <PropertyRef Name="id_custo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tb_custo_tb_fornecedores1">
+          <End Type="larmscafeModel.tb_fornecedores" Role="tb_fornecedores" Multiplicity="1" />
+          <End Type="larmscafeModel.tb_custo" Role="tb_custo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_fornecedores">
+              <PropertyRef Name="id_fornecedores" />
+            </Principal>
+            <Dependent Role="tb_custo">
+              <PropertyRef Name="id_fornecedores" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tb_banco_item_tb_materia_prima1">
+          <End Type="larmscafeModel.tb_materia_prima" Role="tb_materia_prima" Multiplicity="1" />
+          <End Type="larmscafeModel.tb_custo_item" Role="tb_custo_item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_materia_prima">
+              <PropertyRef Name="id_materia_prima" />
+            </Principal>
+            <Dependent Role="tb_custo_item">
+              <PropertyRef Name="id_materia_prima" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tb_estoque_tb_materia_prima1">
+          <End Type="larmscafeModel.tb_materia_prima" Role="tb_materia_prima" Multiplicity="1" />
+          <End Type="larmscafeModel.tb_estoque" Role="tb_estoque" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_materia_prima">
+              <PropertyRef Name="id_materia_prima" />
+            </Principal>
+            <Dependent Role="tb_estoque">
+              <PropertyRef Name="id_materia_prima" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tb_faltas_tb_funcionario1">
+          <End Type="larmscafeModel.tb_funcionario" Role="tb_funcionario" Multiplicity="1" />
+          <End Type="larmscafeModel.tb_faltas" Role="tb_faltas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_funcionario">
+              <PropertyRef Name="id_funcionario" />
+            </Principal>
+            <Dependent Role="tb_faltas">
+              <PropertyRef Name="id_funcionario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tb_fopag_tb_funcionario1">
+          <End Type="larmscafeModel.tb_funcionario" Role="tb_funcionario" Multiplicity="1" />
+          <End Type="larmscafeModel.tb_fopag" Role="tb_fopag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_funcionario">
+              <PropertyRef Name="id_funcionario" />
+            </Principal>
+            <Dependent Role="tb_fopag">
+              <PropertyRef Name="id_funcionario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tb_funcionario_tb_plano_de_saude1">
+          <End Type="larmscafeModel.tb_plano_de_saude" Role="tb_plano_de_saude" Multiplicity="1" />
+          <End Type="larmscafeModel.tb_funcionario" Role="tb_funcionario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_plano_de_saude">
+              <PropertyRef Name="id_plano_de_saude" />
+            </Principal>
+            <Dependent Role="tb_funcionario">
+              <PropertyRef Name="id_plano_de_saude" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tb_funcionario_tb_plano_odontologico1">
+          <End Type="larmscafeModel.tb_plano_odontologico" Role="tb_plano_odontologico" Multiplicity="1" />
+          <End Type="larmscafeModel.tb_funcionario" Role="tb_funcionario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_plano_odontologico">
+              <PropertyRef Name="id_plano_odontologico" />
+            </Principal>
+            <Dependent Role="tb_funcionario">
+              <PropertyRef Name="id_plano_odontologico" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tb_funcionario_tb_seguro_vida1">
+          <End Type="larmscafeModel.tb_seguro_vida" Role="tb_seguro_vida" Multiplicity="1" />
+          <End Type="larmscafeModel.tb_funcionario" Role="tb_funcionario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_seguro_vida">
+              <PropertyRef Name="id_seguro_vida" />
+            </Principal>
+            <Dependent Role="tb_funcionario">
+              <PropertyRef Name="id_seguro_vida" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tb_funcionario_tb_vale_alimentacao1">
+          <End Type="larmscafeModel.tb_vale_alimentacao" Role="tb_vale_alimentacao" Multiplicity="1" />
+          <End Type="larmscafeModel.tb_funcionario" Role="tb_funcionario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_vale_alimentacao">
+              <PropertyRef Name="id_vale_alimentacao" />
+            </Principal>
+            <Dependent Role="tb_funcionario">
+              <PropertyRef Name="id_vale_alimentacao" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tb_funcionario_tb_vale_refeicao1">
+          <End Type="larmscafeModel.tb_vale_refeicao" Role="tb_vale_refeicao" Multiplicity="1" />
+          <End Type="larmscafeModel.tb_funcionario" Role="tb_funcionario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_vale_refeicao">
+              <PropertyRef Name="id_vale_refeicao" />
+            </Principal>
+            <Dependent Role="tb_funcionario">
+              <PropertyRef Name="id_vale_refeicao" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tb_funcionario_tb_vale_transporte1">
+          <End Type="larmscafeModel.tb_vale_transporte" Role="tb_vale_transporte" Multiplicity="1" />
+          <End Type="larmscafeModel.tb_funcionario" Role="tb_funcionario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_vale_transporte">
+              <PropertyRef Name="id_vale_transporte" />
+            </Principal>
+            <Dependent Role="tb_funcionario">
+              <PropertyRef Name="id_vale_transporte" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tb_usuario_tb_funcionario1">
+          <End Type="larmscafeModel.tb_funcionario" Role="tb_funcionario" Multiplicity="1" />
+          <End Type="larmscafeModel.tb_usuario" Role="tb_usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_funcionario">
+              <PropertyRef Name="id_funcionario" />
+            </Principal>
+            <Dependent Role="tb_usuario">
+              <PropertyRef Name="id_funcionario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tb_venda_tb_funcionario1">
+          <End Type="larmscafeModel.tb_funcionario" Role="tb_funcionario" Multiplicity="1" />
+          <End Type="larmscafeModel.tb_venda" Role="tb_venda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_funcionario">
+              <PropertyRef Name="id_funcionario" />
+            </Principal>
+            <Dependent Role="tb_venda">
+              <PropertyRef Name="id_funcionario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tb_log_tb_usuario1">
+          <End Type="larmscafeModel.tb_usuario" Role="tb_usuario" Multiplicity="1" />
+          <End Type="larmscafeModel.tb_log" Role="tb_log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_usuario">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="tb_log">
+              <PropertyRef Name="id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tb_venda_produto_tb_produto1">
+          <End Type="larmscafeModel.tb_produto" Role="tb_produto" Multiplicity="1" />
+          <End Type="larmscafeModel.tb_venda_produto" Role="tb_venda_produto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_produto">
+              <PropertyRef Name="id_produtos" />
+            </Principal>
+            <Dependent Role="tb_venda_produto">
+              <PropertyRef Name="id_produtos" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tb_venda_produto_tb_venda1">
+          <End Type="larmscafeModel.tb_venda" Role="tb_venda" Multiplicity="1" />
+          <End Type="larmscafeModel.tb_venda_produto" Role="tb_venda_produto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_venda">
+              <PropertyRef Name="id_venda" />
+            </Principal>
+            <Dependent Role="tb_venda_produto">
+              <PropertyRef Name="id_venda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="larmscafeModelStoreContainer" CdmEntityContainer="larmscafeEntities1">
+          <FunctionImportMapping FunctionImportName="pc_listar_funcionario" FunctionName="larmscafeModel.Store.pc_listar_funcionario">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="larmscafeModel.pc_listar_funcionario_Result" />
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="tb_balanco_patrimonial">
+            <EntityTypeMapping TypeName="larmscafeModel.tb_balanco_patrimonial">
+              <MappingFragment StoreEntitySet="tb_balanco_patrimonial">
+                <ScalarProperty Name="ds_categoria" ColumnName="ds_categoria" />
+                <ScalarProperty Name="dt_data" ColumnName="dt_data" />
+                <ScalarProperty Name="vl_valor" ColumnName="vl_valor" />
+                <ScalarProperty Name="nm_referencia" ColumnName="nm_referencia" />
+                <ScalarProperty Name="id_balanco_patrimonial" ColumnName="id_balanco_patrimonial" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_cargo">
+            <EntityTypeMapping TypeName="larmscafeModel.tb_cargo">
+              <MappingFragment StoreEntitySet="tb_cargo">
+                <ScalarProperty Name="ds_codigo_cargo" ColumnName="ds_codigo_cargo" />
+                <ScalarProperty Name="ds_cargo" ColumnName="ds_cargo" />
+                <ScalarProperty Name="id_cargo" ColumnName="id_cargo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_cliente">
+            <EntityTypeMapping TypeName="larmscafeModel.tb_cliente">
+              <MappingFragment StoreEntitySet="tb_cliente">
+                <ScalarProperty Name="ds_email" ColumnName="ds_email" />
+                <ScalarProperty Name="bt_fidelizado" ColumnName="bt_fidelizado" />
+                <ScalarProperty Name="bt_ativo" ColumnName="bt_ativo" />
+                <ScalarProperty Name="dt_primeira_compra" ColumnName="dt_primeira_compra" />
+                <ScalarProperty Name="ds_endereco" ColumnName="ds_endereco" />
+                <ScalarProperty Name="ds_telefone" ColumnName="ds_telefone" />
+                <ScalarProperty Name="nm_cliente" ColumnName="nm_cliente" />
+                <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_custo">
+            <EntityTypeMapping TypeName="larmscafeModel.tb_custo">
+              <MappingFragment StoreEntitySet="tb_custo">
+                <ScalarProperty Name="id_fornecedores" ColumnName="id_fornecedores" />
+                <ScalarProperty Name="dt_compra" ColumnName="dt_compra" />
+                <ScalarProperty Name="vl_total" ColumnName="vl_total" />
+                <ScalarProperty Name="qt_quantidade_compra" ColumnName="qt_quantidade_compra" />
+                <ScalarProperty Name="id_custo" ColumnName="id_custo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_custo_item">
+            <EntityTypeMapping TypeName="larmscafeModel.tb_custo_item">
+              <MappingFragment StoreEntitySet="tb_custo_item">
+                <ScalarProperty Name="id_custo" ColumnName="id_custo" />
+                <ScalarProperty Name="id_materia_prima" ColumnName="id_materia_prima" />
+                <ScalarProperty Name="vl_preco_unitario" ColumnName="vl_preco_unitario" />
+                <ScalarProperty Name="id_custo__item" ColumnName="id_custo_ item" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_despesa">
+            <EntityTypeMapping TypeName="larmscafeModel.tb_despesa">
+              <MappingFragment StoreEntitySet="tb_despesa">
+                <ScalarProperty Name="dt_saida" ColumnName="dt_saida" />
+                <ScalarProperty Name="dt_entrada" ColumnName="dt_entrada" />
+                <ScalarProperty Name="ds_realizado" ColumnName="ds_realizado" />
+                <ScalarProperty Name="ds_previsto" ColumnName="ds_previsto" />
+                <ScalarProperty Name="nm_referencia" ColumnName="nm_referencia" />
+                <ScalarProperty Name="id_fluxo_caixa" ColumnName="id_fluxo_caixa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_estoque">
+            <EntityTypeMapping TypeName="larmscafeModel.tb_estoque">
+              <MappingFragment StoreEntitySet="tb_estoque">
+                <ScalarProperty Name="id_materia_prima" ColumnName="id_materia_prima" />
+                <ScalarProperty Name="vl_total" ColumnName="vl_total" />
+                <ScalarProperty Name="dt_validade_prevista" ColumnName="dt_validade_prevista" />
+                <ScalarProperty Name="bt_urgente" ColumnName="bt_urgente" />
+                <ScalarProperty Name="bt_abastecer" ColumnName="bt_abastecer" />
+                <ScalarProperty Name="ds_especificacao" ColumnName="ds_especificacao" />
+                <ScalarProperty Name="ds_situacao_produto" ColumnName="ds_situacao_produto" />
+                <ScalarProperty Name="qt_estoque" ColumnName="qt_estoque" />
+                <ScalarProperty Name="id_estoque" ColumnName="id_estoque" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_faltas">
+            <EntityTypeMapping TypeName="larmscafeModel.tb_faltas">
+              <MappingFragment StoreEntitySet="tb_faltas">
+                <ScalarProperty Name="id_funcionario" ColumnName="id_funcionario" />
+                <ScalarProperty Name="dt_falta" ColumnName="dt_falta" />
+                <ScalarProperty Name="id_faltas" ColumnName="id_faltas" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_fgts">
+            <EntityTypeMapping TypeName="larmscafeModel.tb_fgts">
+              <MappingFragment StoreEntitySet="tb_fgts">
+                <ScalarProperty Name="vl_fgts" ColumnName="vl_fgts" />
+                <ScalarProperty Name="id_fgts" ColumnName="id_fgts" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_fopag">
+            <EntityTypeMapping TypeName="larmscafeModel.tb_fopag">
+              <MappingFragment StoreEntitySet="tb_fopag">
+                <ScalarProperty Name="id_funcionario" ColumnName="id_funcionario" />
+                <ScalarProperty Name="vl_ir" ColumnName="vl_ir" />
+                <ScalarProperty Name="vl_fgts" ColumnName="vl_fgts" />
+                <ScalarProperty Name="ds_cnpj" ColumnName="ds_cnpj" />
+                <ScalarProperty Name="vl_salario" ColumnName="vl_salario" />
+                <ScalarProperty Name="dt_pagamento" ColumnName="dt_pagamento" />
+                <ScalarProperty Name="ds_adiantamento_semanal" ColumnName="ds_adiantamento_semanal" />
+                <ScalarProperty Name="vl_total_proventos" ColumnName="vl_total_proventos" />
+                <ScalarProperty Name="vl_plr" ColumnName="vl_plr" />
+                <ScalarProperty Name="vl_gratificacao" ColumnName="vl_gratificacao" />
+                <ScalarProperty Name="vl_adicional_noturno" ColumnName="vl_adicional_noturno" />
+                <ScalarProperty Name="qt_hora_extra" ColumnName="qt_hora_extra" />
+                <ScalarProperty Name="vl_total_desconto" ColumnName="vl_total_desconto" />
+                <ScalarProperty Name="qt_falta" ColumnName="qt_falta" />
+                <ScalarProperty Name="id_fopag" ColumnName="id_fopag" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_fornecedores">
+            <EntityTypeMapping TypeName="larmscafeModel.tb_fornecedores">
+              <MappingFragment StoreEntitySet="tb_fornecedores">
+                <ScalarProperty Name="ds_telefone" ColumnName="ds_telefone" />
+                <ScalarProperty Name="ds_cnpj" ColumnName="ds_cnpj" />
+                <ScalarProperty Name="ds_marca_fornecida" ColumnName="ds_marca_fornecida" />
+                <ScalarProperty Name="nm_empresa_fornecedor" ColumnName="nm_empresa_fornecedor" />
+                <ScalarProperty Name="id_fornecedores" ColumnName="id_fornecedores" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_funcionario">
+            <EntityTypeMapping TypeName="larmscafeModel.tb_funcionario">
+              <MappingFragment StoreEntitySet="tb_funcionario">
+                <ScalarProperty Name="id_cargo" ColumnName="id_cargo" />
+                <ScalarProperty Name="id_vale_alimentacao" ColumnName="id_vale_alimentacao" />
+                <ScalarProperty Name="id_vale_refeicao" ColumnName="id_vale_refeicao" />
+                <ScalarProperty Name="id_vale_transporte" ColumnName="id_vale_transporte" />
+                <ScalarProperty Name="id_plano_odontologico" ColumnName="id_plano_odontologico" />
+                <ScalarProperty Name="id_plano_de_saude" ColumnName="id_plano_de_saude" />
+                <ScalarProperty Name="id_seguro_vida" ColumnName="id_seguro_vida" />
+                <ScalarProperty Name="dt_nascimento" ColumnName="dt_nascimento" />
+                <ScalarProperty Name="ds_email" ColumnName="ds_email" />
+                <ScalarProperty Name="ds_telefone" ColumnName="ds_telefone" />
+                <ScalarProperty Name="ds_endereco" ColumnName="ds_endereco" />
+                <ScalarProperty Name="ds_cpf" ColumnName="ds_cpf" />
+                <ScalarProperty Name="vl_salario_bruto" ColumnName="vl_salario_bruto" />
+                <ScalarProperty Name="dt_adimissao" ColumnName="dt_adimissao" />
+                <ScalarProperty Name="nm_empresa" ColumnName="nm_empresa" />
+                <ScalarProperty Name="vl_insalubridade" ColumnName="vl_insalubridade" />
+                <ScalarProperty Name="vl_periculosidade" ColumnName="vl_periculosidade" />
+                <ScalarProperty Name="vl_salario_familia" ColumnName="vl_salario_familia" />
+                <ScalarProperty Name="vl_inss" ColumnName="vl_inss" />
+                <ScalarProperty Name="dt_demitido" ColumnName="dt_demitido" />
+                <ScalarProperty Name="nm_funcionario" ColumnName="nm_funcionario" />
+                <ScalarProperty Name="id_funcionario" ColumnName="id_funcionario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_inss">
+            <EntityTypeMapping TypeName="larmscafeModel.tb_inss">
+              <MappingFragment StoreEntitySet="tb_inss">
+                <ScalarProperty Name="vl_salario_maximo" ColumnName="vl_salario_maximo" />
+                <ScalarProperty Name="vl_salario_inicial" ColumnName="vl_salario_inicial" />
+                <ScalarProperty Name="ds_porcentagem" ColumnName="ds_porcentagem" />
+                <ScalarProperty Name="id_inss" ColumnName="id_inss" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_log">
+            <EntityTypeMapping TypeName="larmscafeModel.tb_log">
+              <MappingFragment StoreEntitySet="tb_log">
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+                <ScalarProperty Name="ds_tela" ColumnName="ds_tela" />
+                <ScalarProperty Name="dt_entrada" ColumnName="dt_entrada" />
+                <ScalarProperty Name="id_log" ColumnName="id_log" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_materia_prima">
+            <EntityTypeMapping TypeName="larmscafeModel.tb_materia_prima">
+              <MappingFragment StoreEntitySet="tb_materia_prima">
+                <ScalarProperty Name="ds_categoria" ColumnName="ds_categoria" />
+                <ScalarProperty Name="vl_preco" ColumnName="vl_preco" />
+                <ScalarProperty Name="nm_produto" ColumnName="nm_produto" />
+                <ScalarProperty Name="id_materia_prima" ColumnName="id_materia_prima" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_plano_de_saude">
+            <EntityTypeMapping TypeName="larmscafeModel.tb_plano_de_saude">
+              <MappingFragment StoreEntitySet="tb_plano_de_saude">
+                <ScalarProperty Name="vl_plano" ColumnName="vl_plano" />
+                <ScalarProperty Name="ds_plano_funcionario" ColumnName="ds_plano_funcionario" />
+                <ScalarProperty Name="id_plano_de_saude" ColumnName="id_plano_de_saude" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_plano_odontologico">
+            <EntityTypeMapping TypeName="larmscafeModel.tb_plano_odontologico">
+              <MappingFragment StoreEntitySet="tb_plano_odontologico">
+                <ScalarProperty Name="vl_plano" ColumnName="vl_plano" />
+                <ScalarProperty Name="ds_plano_funcionario" ColumnName="ds_plano_funcionario" />
+                <ScalarProperty Name="id_plano_odontologico" ColumnName="id_plano_odontologico" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_produto">
+            <EntityTypeMapping TypeName="larmscafeModel.tb_produto">
+              <MappingFragment StoreEntitySet="tb_produto">
+                <ScalarProperty Name="ds_observacao" ColumnName="ds_observacao" />
+                <ScalarProperty Name="ds_categoria" ColumnName="ds_categoria" />
+                <ScalarProperty Name="vl_preco" ColumnName="vl_preco" />
+                <ScalarProperty Name="nm_produto" ColumnName="nm_produto" />
+                <ScalarProperty Name="id_produtos" ColumnName="id_produtos" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_salario_familia">
+            <EntityTypeMapping TypeName="larmscafeModel.tb_salario_familia">
+              <MappingFragment StoreEntitySet="tb_salario_familia">
+                <ScalarProperty Name="vl_valor" ColumnName="vl_valor" />
+                <ScalarProperty Name="vl_salario_ate" ColumnName="vl_salario_ate" />
+                <ScalarProperty Name="vl_salario_de" ColumnName="vl_salario_de" />
+                <ScalarProperty Name="id_salario_familia" ColumnName="id_salario_familia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_seguro_vida">
+            <EntityTypeMapping TypeName="larmscafeModel.tb_seguro_vida">
+              <MappingFragment StoreEntitySet="tb_seguro_vida">
+                <ScalarProperty Name="vl_plano" ColumnName="vl_plano" />
+                <ScalarProperty Name="ds_plano_funcionario" ColumnName="ds_plano_funcionario" />
+                <ScalarProperty Name="id_seguro_vida" ColumnName="id_seguro_vida" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_taxa_vt">
+            <EntityTypeMapping TypeName="larmscafeModel.tb_taxa_vt">
+              <MappingFragment StoreEntitySet="tb_taxa_vt">
+                <ScalarProperty Name="vl_taxa" ColumnName="vl_taxa" />
+                <ScalarProperty Name="id_taxa_vt" ColumnName="id_taxa_vt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_usuario">
+            <EntityTypeMapping TypeName="larmscafeModel.tb_usuario">
+              <MappingFragment StoreEntitySet="tb_usuario">
+                <ScalarProperty Name="id_funcionario" ColumnName="id_funcionario" />
+                <ScalarProperty Name="ds_codigo_alteracao" ColumnName="ds-codigo_alteracao" />
+                <ScalarProperty Name="nm_senha" ColumnName="nm_senha" />
+                <ScalarProperty Name="nm_usuario" ColumnName="nm_usuario" />
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_vale_alimentacao">
+            <EntityTypeMapping TypeName="larmscafeModel.tb_vale_alimentacao">
+              <MappingFragment StoreEntitySet="tb_vale_alimentacao">
+                <ScalarProperty Name="vl_vale_alimentacao" ColumnName="vl_vale_alimentacao" />
+                <ScalarProperty Name="ds_codigo_va" ColumnName="ds_codigo_va" />
+                <ScalarProperty Name="id_vale_alimentacao" ColumnName="id_vale_alimentacao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_vale_refeicao">
+            <EntityTypeMapping TypeName="larmscafeModel.tb_vale_refeicao">
+              <MappingFragment StoreEntitySet="tb_vale_refeicao">
+                <ScalarProperty Name="vl_vale_refeicao" ColumnName="vl_vale_refeicao" />
+                <ScalarProperty Name="ds_codigo_vr" ColumnName="ds_codigo_vr" />
+                <ScalarProperty Name="id_vale_refeicao" ColumnName="id_vale_refeicao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_vale_transporte">
+            <EntityTypeMapping TypeName="larmscafeModel.tb_vale_transporte">
+              <MappingFragment StoreEntitySet="tb_vale_transporte">
+                <ScalarProperty Name="ds_codigo_bilhete_unico" ColumnName="ds_codigo_bilhete_unico" />
+                <ScalarProperty Name="ds_codigo_uso" ColumnName="ds_codigo_uso" />
+                <ScalarProperty Name="vl_vt" ColumnName="vl_vt" />
+                <ScalarProperty Name="id_vale_transporte" ColumnName="id_vale_transporte" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_venda">
+            <EntityTypeMapping TypeName="larmscafeModel.tb_venda">
+              <MappingFragment StoreEntitySet="tb_venda">
+                <ScalarProperty Name="id_funcionario" ColumnName="id_funcionario" />
+                <ScalarProperty Name="vl_total_venda" ColumnName="vl_total_venda" />
+                <ScalarProperty Name="ds_modo_pagamento" ColumnName="ds_modo_pagamento" />
+                <ScalarProperty Name="qt_parcelas" ColumnName="qt_parcelas" />
+                <ScalarProperty Name="dt_venda" ColumnName="dt_venda" />
+                <ScalarProperty Name="id_venda" ColumnName="id_venda" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_venda_produto">
+            <EntityTypeMapping TypeName="larmscafeModel.tb_venda_produto">
+              <MappingFragment StoreEntitySet="tb_venda_produto">
+                <ScalarProperty Name="bt_vendido" ColumnName="bt_vendido" />
+                <ScalarProperty Name="id_produtos" ColumnName="id_produtos" />
+                <ScalarProperty Name="id_venda" ColumnName="id_venda" />
+                <ScalarProperty Name="vl_total" ColumnName="vl_total" />
+                <ScalarProperty Name="qt_produto" ColumnName="qt_produto" />
+                <ScalarProperty Name="id_venda_produto" ColumnName="id_venda_produto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_fluxo_de_caixa">
+            <EntityTypeMapping TypeName="larmscafeModel.vw_fluxo_de_caixa">
+              <MappingFragment StoreEntitySet="vw_fluxo_de_caixa">
+                <ScalarProperty Name="tp_operacao" ColumnName="tp_operacao" />
+                <ScalarProperty Name="vl_operacao" ColumnName="vl_operacao" />
+                <ScalarProperty Name="dt_pagamento" ColumnName="dt_pagamento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
