@@ -11,7 +11,7 @@ using System.Net;
 namespace Larm_s_Café.Objetos
 {
     class GmailSender
-    {
+    {//Código alterado por medidas de segurança
                 /// <summary>
         /// Função responsável por enviar um e-mail a partir da configuração feita na função ConfigurarCredenciais
         /// </summary>
