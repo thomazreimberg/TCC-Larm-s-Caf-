@@ -12,6 +12,7 @@ namespace Larm_s_Café.Telas.Inserir.RH
 {
     public partial class frmInserirFolhaDePagamento : Form
     {
+    //Código completo não enviado
         public frmInserirFolhaDePagamento()
         {
             InitializeComponent();
@@ -83,8 +84,7 @@ namespace Larm_s_Café.Telas.Inserir.RH
             nudTotalDescontos.Text = "Total: R$" + lista.vl_total_desconto;
             nudTotalProventos.Text = "Total: R$" + lista.vl_total_proventos;
             nudSalarioLiquido.Text = "Total: R$" + lista.vl_salario;
-            //nudIR.Value = ;
-
+            
             dtpAdmissao.Value = lista.tb_funcionario.dt_adimissao.Date;
             dtpDemissao.Value = lista.dt_demitido.Date;
 
@@ -108,28 +108,8 @@ namespace Larm_s_Café.Telas.Inserir.RH
             nudHoraExtra.Value = folhaDePagamento.HoraExtra;
             nudINSS.Value = folhaDePagamento.INSS;
             nudFaltas.Value = folhaDePagamento.Faltas;
+            //Código completo não enviado
             
-            
-        }
-
-        private void frmInserirFolhaDePagamento_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void nudSalarioBruto_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void nudRenumeracao_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void nudSalarioFamilia_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
+        }       
     }
 }
