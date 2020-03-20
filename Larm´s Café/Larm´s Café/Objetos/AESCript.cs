@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 namespace Larm_s_Café.Objetos
 {
     class AESCript
-    {
+    { //Código alterado por medidas de segurança
         public string Criptografar(string mensagem)
         {
-            string chave = "scr3tk3yCh@lleng"; 
+            string chave = "--"; 
             // Cria objeto para criptografia AES
             System.Security.Cryptography.RijndaelManaged rijndael = new System.Security.Cryptography.RijndaelManaged();
             rijndael.Mode = System.Security.Cryptography.CipherMode.CBC;
@@ -38,7 +38,7 @@ namespace Larm_s_Café.Objetos
 
         public string Descriptografar(string criptografia)
         {
-            string chave = "scr3tk3yCh@lleng";
+            string chave = "--";
             // Cria objeto para criptografia AES
             System.Security.Cryptography.RijndaelManaged rijndael = new System.Security.Cryptography.RijndaelManaged();
             rijndael.Mode = System.Security.Cryptography.CipherMode.CBC;
