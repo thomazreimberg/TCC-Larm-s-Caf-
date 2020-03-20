@@ -56,12 +56,12 @@ namespace Larm_s_Café.Objetos
             decimal horaExtraTotal = CalcularHoraExtra50(salario, horaExtra);
             decimal dsr = CalcularDSR(horaExtraTotal);
             decimal salarioFamilia = folha.vl_salario_familia;
-            decimal insalubridade = CalcularInsalubridade(980.00m, horaExtraTotal+dsr+salario); // Alterar O salário mímimo
+            decimal insalubridade = CalcularInsalubridade(980.00m, horaExtraTotal+dsr+salario);
             decimal proventos = horaExtraTotal + salario + dsr + salarioFamilia + insalubridade;
             return proventos;
         }
 
-        private decimal CalcularHoraExtra50(decimal salario, decimal horaExtra)//Provento
+        private decimal CalcularHoraExtra50(decimal salario, decimal horaExtra)
         {
             decimal horaExtraValor = salario / 220;
             decimal horaExtraTrabalhada = (horaExtraValor * 0.50m) + horaExtraValor;
@@ -69,7 +69,7 @@ namespace Larm_s_Café.Objetos
             return total;
         }
 
-        private decimal CalcularHoraExtra100(decimal salario, decimal horaExtra)//Provento
+        private decimal CalcularHoraExtra100(decimal salario, decimal horaExtra)
         {
             decimal horaExtraValor = salario / 220;
             decimal horaExtraTrabalhada = (horaExtraValor * 1.00m) + horaExtraValor;
@@ -77,7 +77,7 @@ namespace Larm_s_Café.Objetos
             return total;
         }
 
-        private decimal CalcularDSR (decimal horaExtraTotal)//Provento
+        private decimal CalcularDSR (decimal horaExtraTotal)
         {
             decimal dsr = (horaExtraTotal / 26) * 4;
             return dsr;
@@ -90,7 +90,7 @@ namespace Larm_s_Café.Objetos
             
             decimal baseInss = CalcularSalarioBase(salario, horaExtra);
             decimal inss = 0;
-            if(salario <= 1751.81m)//Vai vir de consulta
+            if(salario <= 1751.81m)
             {
                 inss = baseInss * 0.08m;
             }
