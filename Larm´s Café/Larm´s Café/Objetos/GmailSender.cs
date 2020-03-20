@@ -24,8 +24,8 @@ namespace Larm_s_Café.Objetos
             {
                 System.Net.Mail.MailMessage email = new System.Net.Mail.MailMessage();
 
-                string remetente = "frameditsolution123@gmail.com";
-                string senha = "framedfis123";
+                string remetente = "---";
+                string senha = "---";
 
 
                 // Configura Remetente, Destinatário
@@ -61,7 +61,7 @@ namespace Larm_s_Café.Objetos
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
             //+14156304449
-            TwilioClient.Init("AC7b51d4bde938a3d308ea23d877b4ed1d", "c9e21ef81a397c029d9bc97c6c2ecd93");
+            TwilioClient.Init("--", "--");
             
             var message = MessageResource.Create(
                 new PhoneNumber(telefonePara),
@@ -75,7 +75,7 @@ namespace Larm_s_Café.Objetos
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
             //+14156304449
-            TwilioClient.Init("AC7b51d4bde938a3d308ea23d877b4ed1d", "c9e21ef81a397c029d9bc97c6c2ecd93");
+            TwilioClient.Init("--", "--");
 
             var message = MessageResource.Create(
                 new PhoneNumber("whatsapp:" + telPara),
