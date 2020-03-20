@@ -8,7 +8,6 @@ namespace Larm_s_Café.Objetos
 {
     class CodigoAleatorio
     {
-        // Sem comentários hahahaha
         public string GerarCodigo()
         {
             int tamanhoSenha = 10;
